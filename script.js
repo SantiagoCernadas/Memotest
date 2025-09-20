@@ -67,11 +67,12 @@ function eliminarParrafos(div){
 
 IniciarJuego();
 
-cartas[0].carta.addEventListener('click', () => {
-    alert("Prueba de funcionamiento");
-    console.log(cartas[0]);
-})
+
+
 
 imagenesPares.forEach((imagen,i) => {
-    cartas[i].carta.src = imagen;
+
+    cartas[i].carta.addEventListener('click', () => {
+    cartas[i].carta.querySelector('img').src = imagen;
+})
 });
