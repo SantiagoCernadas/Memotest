@@ -59,11 +59,13 @@ h3{
     width: 80%;
 }
 
+/*
 .card:hover{
     background-color: #00523d;
-    color: white;
     cursor: pointer;
 }
+
+*/
 
 .stats-panel{
     display: flex;
