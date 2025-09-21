@@ -81,14 +81,12 @@ imagenesPares.forEach((imagen,i) => {
                 }
                 else{
                     setTimeout(() => {
-                        cartas[posicionesActuales[0]].carta.querySelector('img').src = 'images/signospregunta.png'
-                        cartas[posicionesActuales[0]].carta.style.backgroundColor = '#028C6A';
-                        cartas[posicionesActuales[0]].carta.style.cursor = 'pointer';
-                        cartas[posicionesActuales[0]].elegida= false;
-                        cartas[posicionesActuales[1]].carta.querySelector('img').src = 'images/signospregunta.png'
-                        cartas[posicionesActuales[1]].carta.style.backgroundColor = '#028C6A';
-                        cartas[posicionesActuales[1]].carta.style.cursor = 'pointer';
-                        cartas[posicionesActuales[1]].elegida= false;
+                        for(let i = 0;i < 2;i++){
+                        cartas[posicionesActuales[i]].carta.querySelector('img').src = 'images/signospregunta.png'
+                        cartas[posicionesActuales[i]].carta.style.backgroundColor = '#2bb800';
+                        cartas[posicionesActuales[i]].carta.style.cursor = 'pointer';
+                        cartas[posicionesActuales[i]].elegida= false;
+                        }
                         posicionesActuales.length = 0;
                     }, 700)
                     
@@ -129,7 +127,7 @@ function desordenarArray(array) {
 function IniciarJuego(){
     for(i=0;i < 16; i++){
         cartas[i].carta.querySelector('img').src = 'images/signospregunta.png'
-        cartas[i].carta.style.backgroundColor = '#028C6A';
+        cartas[i].carta.style.backgroundColor = '#2bb800';
         cartas[i].carta.style.cursor = 'pointer';
         cartas[i].elegida= false;
     }
@@ -157,6 +155,6 @@ function eliminarParrafos(div){
 
 function agregarTexto(div,p){
     const textos = document.querySelector('.'+div).querySelector('.stats-container');
-    textos.appendChild(p);
+    textos.prepend(p);
 }
 
