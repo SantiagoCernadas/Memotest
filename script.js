@@ -7,16 +7,16 @@ let imagenesPares = [
     'images/knuckles.webp',
     'images/shadow.webp',
     'images/amy.webp',
-    'images/espio.png',
-    'images/silver.png',
+    'images/espio.webp',
+    'images/silver.webp',
     'images/blaze.webp',
     'images/sonic.webp',
     'images/tails.webp',
     'images/knuckles.webp',
     'images/shadow.webp',
     'images/amy.webp',
-    'images/espio.png',
-    'images/silver.png',
+    'images/espio.webp',
+    'images/silver.webp',
     'images/blaze.webp'
 ];
 
@@ -60,13 +60,40 @@ imagenesPares.forEach((imagen,i) => {
             cartas[i].carta.style.backgroundColor = '#D1EDE1';
             cartas[i].carta.style.cursor = 'auto';
             cartas[i].elegida = true;
-            posicionesActuales.push(lugares[i]);
+
+            posicionesActuales.push(i);
 
             if(posicionesActuales.length == 2){
                 let parrafo = document.createElement('p');
-                parrafo.innerHTML = posicionesActuales[0] + ' - ' + posicionesActuales[1]
+                parrafo.innerHTML = lugares[posicionesActuales[0]] + ' - ' + lugares[posicionesActuales[1]]
                 agregarTexto('stats-mov',parrafo);
-                posicionesActuales.length = 0;
+                let guion = document.createElement('p');
+                guion.innerHTML = '-----'
+                agregarTexto('stats-mov',guion); 
+
+                if(imagenesPares[posicionesActuales[0]] == imagenesPares[posicionesActuales[1]]){
+                    let parrafoEncontrado = document.createElement('p');
+
+                    //se corta la ruta /images/ y el formato del a imagen para ingresar unicamente el nombre.
+                    parrafoEncontrado.innerHTML = imagenesPares[posicionesActuales[0]].slice(0,-5).slice(7);
+                    agregarTexto('stats-found',parrafoEncontrado);  
+                    posicionesActuales.length = 0;
+                }
+                else{
+                    setTimeout(() => {
+                        cartas[posicionesActuales[0]].carta.querySelector('img').src = 'images/signospregunta.png'
+                        cartas[posicionesActuales[0]].carta.style.backgroundColor = '#028C6A';
+                        cartas[posicionesActuales[0]].carta.style.cursor = 'pointer';
+                        cartas[posicionesActuales[0]].elegida= false;
+                        cartas[posicionesActuales[1]].carta.querySelector('img').src = 'images/signospregunta.png'
+                        cartas[posicionesActuales[1]].carta.style.backgroundColor = '#028C6A';
+                        cartas[posicionesActuales[1]].carta.style.cursor = 'pointer';
+                        cartas[posicionesActuales[1]].elegida= false;
+                        posicionesActuales.length = 0;
+                    }, 700)
+                    
+                        
+                }
             }
             
         }
