@@ -42,6 +42,11 @@ let lugares = [
 
 let posicionesActuales = [];
 
+let cantMovimientos = 0;
+let cantParesEncontrados = 0;
+let cantMovHtml = document.getElementById('cant-mov');
+let cantParesHtml = document.getElementById('cant-found');
+
 
 
 for(i=0;i < 16; i++){
@@ -70,8 +75,13 @@ imagenesPares.forEach((imagen,i) => {
                 let guion = document.createElement('p');
                 guion.innerHTML = '-----'
                 agregarTexto('stats-mov',guion); 
+                cantMovimientos += 1;
+                cantMovHtml.innerHTML = cantMovimientos;
+                
 
                 if(imagenesPares[posicionesActuales[0]] == imagenesPares[posicionesActuales[1]]){
+                    cantParesEncontrados += 1;
+                    cantParesHtml.innerHTML = cantParesEncontrados;
                     let parrafoEncontrado = document.createElement('p');
 
                     //se corta la ruta /images/ y el formato del a imagen para ingresar unicamente el nombre.
@@ -131,7 +141,10 @@ function IniciarJuego(){
         cartas[i].carta.style.cursor = 'pointer';
         cartas[i].elegida= false;
     }
-
+    cantMovimientos = 0;
+    cantParesEncontrados = 0;
+    cantMovHtml.innerHTML = cantMovimientos;
+    cantParesHtml.innerHTML = cantParesEncontrados;
     
     eliminarParrafos('stats-mov');
     eliminarParrafos('stats-found')
